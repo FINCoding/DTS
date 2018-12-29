@@ -1,8 +1,7 @@
 package models
 
-type auto struct{
+type Auto struct{
     Id string
     Brand string
     Model string
-    IdSc string
 }
