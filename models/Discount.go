@@ -6,8 +6,8 @@ type Discount struct{
     gorm.Model
     Title        string  'gorm:"size:255"'
     Description  string
-    SC_id        int
-    Auto_id      int
+    SC_id        int    //'gorm:"foreignkey:Service_centre;association_foreignkey:Id"'
+    Auto_id      int    //'gorm:"foreignkey:Auto;association_foreignkey:Id"'
 }
 
-db.Model(&Discount).Related(&profile)
+//db.Model(&Discount).Related(&profile)
