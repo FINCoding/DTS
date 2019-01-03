@@ -10,4 +10,9 @@ type Discount struct{
     Auto_id      int    //'gorm:"foreignkey:Auto;association_foreignkey:Id"'
 }
 
-//db.Model(&Discount).Related(&profile)
+
+func NewDiscount(id, description, SC_id, Auto_id string) *Discount {
+    return &Discount{id, description, SC_id, Auto_id}
+
+db.Model(&Discount).Related(&profile)
+
