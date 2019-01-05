@@ -1,6 +1,7 @@
 import requests
 import os
 import codecs
+from transliterate import translit
 from bs4 import BeautifulSoup
 
 directory = 'parsing_files'
@@ -31,11 +32,18 @@ def get_page_data(html):
     write_auto_file(tag_lst)
 
 def write_auto_file(tag_lst):
-    file = os.path.join(path_dir_data, 'auto.txt')
+    file = os.path.join(path_dir_data, 'lada.txt')
+    written = []
     with open(file, 'wb') as file:
         for t in tag_lst:
-            file.write(t.find_previous_sibling("th").string.encode("utf-8"))
-
+            text = t.find_previous_sibling("th").string.encode("utf-8")
+            text = text.strip()
+            text = text.split()[0]
+            if text.decode("utf-8").isalpha():
+                text = translit(text.decode("utf-8"), reversed=True).encode("utf-8")
+            if text not in written:
+                written.append(text)
+                file.write(text+'\r'.encode("utf-8"))
 
 def get_td_lst(html):
     soup = BeautifulSoup(html, 'lxml')
