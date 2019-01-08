@@ -43,7 +43,7 @@ def write_auto_file(tag_lst):
                 text = translit(text.decode("utf-8"), reversed=True).encode("utf-8")
             if text not in written:
                 written.append(text)
-                file.write(text+'\r'.encode("utf-8"))
+                file.write(text+'\n'.encode("utf-8"))
 
 def get_td_lst(html):
     soup = BeautifulSoup(html, 'lxml')

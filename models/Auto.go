@@ -1,7 +1,7 @@
 package models
 
 type Auto struct{
-    Id string
+    Id uint
     Brand string
     Model string
 }
